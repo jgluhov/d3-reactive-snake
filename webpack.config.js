@@ -12,23 +12,34 @@ module.exports = {
     module: {
         rules: [
             {
-                test: '/\.ts$/',
+                test: /\.ts$/,
                 include: [
                     path.resolve(__dirname, 'src')
                 ],
                 loader: 'ts-loader'
+            },
+            {
+                test: /\.styl$/,
+                include: [
+                    path.resolve(__dirname, 'src')
+                ],
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'stylus-loader'
+                ]
             }
         ]
     },
 
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Reactive snakes'
+            template: './src/index.html'
         })
     ],
 
     resolve: {
-        extensions: ['.ts','.js']
+        extensions: [' ', '.ts', '.js', '.styl']
     },
 
     devtool: 'cheap-module-eval-source-map',

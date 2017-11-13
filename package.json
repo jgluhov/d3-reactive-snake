@@ -8,11 +8,19 @@
   },
   "author": "jgluhov <jgluhov@gmail.com>",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "d3-selection": "^1.1.0"
+  },
   "devDependencies": {
+    "css-loader": "^0.28.7",
     "html-webpack-plugin": "^2.30.1",
     "path": "^0.12.7",
+    "style-loader": "^0.19.0",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
     "ts-loader": "^3.1.1",
+    "tslint": "^5.8.0",
+    "tslint-config-airbnb": "^5.3.1",
     "typescript": "^2.6.1",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.4"
