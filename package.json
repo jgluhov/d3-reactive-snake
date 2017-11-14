@@ -9,6 +9,7 @@
   "author": "jgluhov <jgluhov@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "d3-array": "^1.2.1",
     "d3-selection": "^1.1.0",
     "rxjs": "^5.5.2"
   },

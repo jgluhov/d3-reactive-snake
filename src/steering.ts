@@ -17,8 +17,19 @@ const directions: Directions = {
   [keyCodes.arrowLeft]: { x: -1, y: 0 },
 };
 
+const initialDirection: Point2D = directions[keyCodes.arrowRight];
+
+const isOpposite = (previous: Point2D, next: Point2D): boolean => {
+  return next.x === previous.x * -1 || next.y === previous.y * -1;
+};
+
 const keydown$ = Observable.fromEvent(document, 'keydown');
 
 export const direction$ = keydown$
   .map((event: KeyboardEvent) => directions[event.keyCode])
-  .filter((direction: Point2D) => !!direction);
+  .filter((direction: Point2D) => !!direction)
+  .scan((previous: Point2D, next: Point2D) => {
+    return isOpposite(previous, next) ? previous : next;
+  })
+  .startWith(initialDirection)
+  .distinctUntilChanged();
