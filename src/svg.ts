@@ -6,7 +6,7 @@ import {
   margin,
 } from './settings';
 
-d3.select('#container')
+export const svg = d3.select('#container')
   .append('svg')
     .attr('width', width + margin.left + margin.right)
     .attr('height', height + margin.top + margin.bottom)
