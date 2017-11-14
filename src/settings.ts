@@ -1,16 +1,17 @@
-export const margin = {
-  top: 10,
-  right: 10,
-  bottom: 10,
-  left: 10,
+export const MARGIN = {
+  TOP: 10,
+  RIGHT: 10,
+  BOTTOM: 10,
+  LEFT: 10,
 };
 
-export const columns = 30;
-export const rows = 30;
-export const gapSize = 1;
-export const cellSize = 12;
+export const COLUMN_COUNT = 30;
+export const ROW_COUNT = 30;
+export const GAP_SIZE = 1;
+export const CELL_SIZE = 12;
 
-export const width = columns * (cellSize + gapSize);
-export const height = rows * (cellSize + gapSize);
+export const WIDTH = COLUMN_COUNT * (CELL_SIZE + GAP_SIZE);
+export const HEIGHT = ROW_COUNT * (CELL_SIZE + GAP_SIZE);
 
-export const snakeLength = 5;
+export const SNAKE_INITIAL_LENGTH = 5;
+export const SNAKE_SPEED = 200;

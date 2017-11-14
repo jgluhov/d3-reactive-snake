@@ -1,38 +1,38 @@
 import * as d3 from './lib/d3';
 
 import {
-  width,
-  height,
-  margin,
-  cellSize,
-  gapSize,
+  WIDTH,
+  HEIGHT,
+  MARGIN,
+  CELL_SIZE,
+  GAP_SIZE,
 } from './settings';
 
 export const svg = d3.select('.container')
   .append('svg')
-    .attr('width', width + margin.left + margin.right)
-    .attr('height', height + margin.top + margin.bottom);
+    .attr('width', WIDTH + MARGIN.LEFT + MARGIN.RIGHT)
+    .attr('height', HEIGHT + MARGIN.TOP + MARGIN.BOTTOM);
 
 const background = svg
   .append('g')
-    .attr('transform', `translate(${margin.left},${margin.top})`)
+    .attr('transform', `translate(${MARGIN.LEFT},${MARGIN.TOP})`)
     .attr('class', 'background');
 
-export const renderBackground = (rows, columns) => {
+export const renderBackground = (rowCount, columnCount) => {
   const update = background
     .selectAll('rect')
-    .data(d3.range(rows * columns));
+    .data(d3.range(rowCount * columnCount));
 
   update
     .enter()
     .append('rect')
       .attr('x', (_, i) => {
-        return Math.floor(i % columns) * (cellSize + gapSize);
+        return Math.floor(i % columnCount) * (CELL_SIZE + GAP_SIZE);
       })
       .attr('y', (_, i) => {
-        return Math.floor(i / columns) * (cellSize + gapSize);
+        return Math.floor(i / columnCount) * (CELL_SIZE + GAP_SIZE);
       })
-      .attr('width', cellSize)
-      .attr('height', cellSize)
+      .attr('width', CELL_SIZE)
+      .attr('height', CELL_SIZE)
       .attr('class', 'cell');
 };

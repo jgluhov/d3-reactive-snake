@@ -1,7 +1,8 @@
 import { Observable } from './lib/rxjs';
 import { keyCodes } from './constants';
+import { isOpposite } from './utils';
 
-interface Point2D {
+export interface Point2D {
   x: number;
   y: number;
 }
@@ -18,10 +19,6 @@ const directions: Directions = {
 };
 
 const initialDirection: Point2D = directions[keyCodes.arrowRight];
-
-const isOpposite = (previous: Point2D, next: Point2D): boolean => {
-  return next.x === previous.x * -1 || next.y === previous.y * -1;
-};
 
 const keydown$ = Observable.fromEvent(document, 'keydown');
 

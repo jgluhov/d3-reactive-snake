@@ -1,15 +1,10 @@
 import './styles';
 import { renderBackground } from './svg';
-import { direction$ } from './steering';
-import { snakeLength$ } from './snake';
-import { rows, columns } from './settings';
+import {
+  ROW_COUNT,
+  COLUMN_COUNT,
+} from './settings';
 
-direction$.subscribe((e) => {
-  console.log(e);
-});
+import './snake';
 
-snakeLength$.subscribe((d) => {
-  console.log(d);
-});
-
-renderBackground(rows, columns);
+renderBackground(ROW_COUNT, COLUMN_COUNT);

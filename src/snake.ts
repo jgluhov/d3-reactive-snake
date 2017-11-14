@@ -1,9 +1,26 @@
-import { BehaviorSubject } from './lib/rxjs';
-import { snakeLength } from './settings';
+import {
+  Observable,
+  BehaviorSubject,
+} from './lib/rxjs';
+import {
+  SNAKE_INITIAL_LENGTH,
+  SNAKE_SPEED,
+} from './settings';
+import { direction$, Point2D } from './steering';
+import {
+  generateSnake,
+  moveSnake,
+} from './utils';
 
-const length$ = new BehaviorSubject<number>(snakeLength);
+const lengthHandler$ = new BehaviorSubject<number>(SNAKE_INITIAL_LENGTH);
 
-export const snakeLength$ = length$
-  .scan((snakeLength, points) => {
-    return snakeLength + points;
-  });
+const snakeSpeed$ = Observable.interval(SNAKE_SPEED);
+
+const snakeLength$: Observable<number> = lengthHandler$
+  .scan((snakeLength, points) => snakeLength + points);
+
+export const snake$: Observable<Point2D[]> = snakeSpeed$
+  .withLatestFrom(
+    snakeLength$, direction$, (_, snakeLength, direction) => [snakeLength, direction],
+  )
+  .scan(moveSnake, generateSnake());
