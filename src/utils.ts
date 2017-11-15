@@ -27,6 +27,12 @@ export function moveSnake(snake: IPoint2D[], snakeState: ISnakeState): IPoint2D[
   return [...snake, next];
 }
 
+export function adjustmentSnake(snake: IPoint2D): IPoint2D {
+  // console.log(snake);
+
+  return snake;
+}
+
 export function isOpposite(previous: IPoint2D, next: IPoint2D): boolean {
   return next.x === previous.x * -1 || next.y === previous.y * -1;
 }

@@ -16,7 +16,7 @@
       "Root/*": [
         "src/*"
       ],
-      "Library/*": [
+      "Libraries/*": [
         "src/lib/*"
       ]
     }
