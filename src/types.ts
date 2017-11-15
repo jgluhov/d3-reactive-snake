@@ -28,3 +28,7 @@ export interface IMargin {
   BOTTOM: number;
   LEFT: number;
 }
+
+export interface IKeyCodes {
+  [key: string]: number;
+}

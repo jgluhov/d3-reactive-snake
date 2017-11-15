@@ -8,12 +8,23 @@ import {
 } from 'Root/settings';
 import {
   IPoint2D,
-  IPosition,
   ISnakeState
 } from 'Root/types';
 
 export function moveSnake(snake: IPoint2D[], snakeState: ISnakeState): IPoint2D[] {
-  return snake;
+  const head: IPoint2D = snake.slice().pop();
+  const next: IPoint2D = snake.shift();
+
+  let x0: number = head.x;
+  let y0: number = head.y;
+
+  x0 += snakeState.direction.x;
+  y0 += snakeState.direction.y;
+
+  next.x = x0;
+  next.y = y0;
+
+  return [...snake, next];
 }
 
 export function isOpposite(previous: IPoint2D, next: IPoint2D): boolean {
