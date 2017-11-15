@@ -1,6 +1,7 @@
 /**
  * Snake constants
  */
+
 import { IKeyCodes } from 'Root/types';
 
 export const keyCodes: IKeyCodes = {

@@ -1,6 +1,7 @@
 /**
  * Snake main
  */
+
 import { animationFrame, Observable } from 'Libraries/rxjs';
 import {
   COLUMN_COUNT,
@@ -20,12 +21,11 @@ import {
 renderBackground(ROW_COUNT, COLUMN_COUNT);
 
 const scene$: Observable<IScene> = Observable
-  .combineLatest(snake$, (snake: IPoint2D[]) => ({ snake }))
-  .do((scene: IScene) => {
-    renderSnake(scene.snake);
-  });
+  .combineLatest(snake$, (snake: IPoint2D[]) => ({ snake }));
 
-scene$.subscribe();
+scene$.subscribe((scene: IScene) => {
+  renderSnake(scene.snake);
+});
 
 // const game$: Observable<IScene> = Observable.interval(1000)
 //   .withLatestFrom(scene$, (_: number, scene: IScene) => scene)

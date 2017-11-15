@@ -10,9 +10,18 @@
     "removeComments": true,
     "noImplicitAny": false,
     "downlevelIteration": true,
-    "suppressImplicitAnyIndexErrors": true
+    "suppressImplicitAnyIndexErrors": true,
+    "baseUrl": ".",
+    "paths": {
+      "Root/*": [
+        "src/*"
+      ],
+      "Library/*": [
+        "src/lib/*"
+      ]
+    }
   },
-  "exclude": [
-      "node_modules"
+  "include": [
+    "src"
   ]
 }
