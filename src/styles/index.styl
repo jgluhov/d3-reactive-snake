@@ -1,3 +1,6 @@
+snake-body-color = #f44336
+snake-head-color = #fffaf0
+
 html, body
   height 100%
   width 100%
@@ -13,7 +16,15 @@ body
   align-items center
   justify-content center
 
-.cell
+.background-cell
   stroke rgba(3, 169, 244, 0.42)
   stroke-width 1px
   fill #00a6f1
+
+.snake-cell
+  stroke rgba(3, 169, 244, 0.42)
+  &:not(:last-child)
+    fill snake-body-color
+  &:last-child
+    fill snake-head-color
+

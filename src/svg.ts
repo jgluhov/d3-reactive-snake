@@ -3,7 +3,6 @@
  */
 
 import * as d3 from 'Libraries/d3';
-import { BaseType, Selection } from 'Libraries/d3';
 import {
   CELL_SIZE,
   GAP_SIZE,
@@ -11,9 +10,10 @@ import {
   MARGIN,
   WIDTH
 } from 'Root/settings';
-import {IPoint2D} from 'Root/steering';
+import { BaseType, IPoint2D, Selection } from 'Root/types';
+import { toPosition } from 'Root/utils';
 
-export const svg: Selection<BaseType, {},  HTMLElement, any> = d3.select('.container')
+export const svg: any = d3.select('.container')
   .append('svg')
     .attr('width', WIDTH + MARGIN.LEFT + MARGIN.RIGHT)
     .attr('height', HEIGHT + MARGIN.TOP + MARGIN.BOTTOM);
@@ -23,13 +23,13 @@ const backgroundEl: Selection<BaseType, {},  HTMLElement, any> = svg
     .attr('transform', `translate(${MARGIN.LEFT},${MARGIN.TOP})`)
     .attr('class', 'background');
 
-const snakeEl: Selection<BaseType, {},  HTMLElement, any> = svg
+const snakeEl: any = svg
   .append('g')
     .attr('transform', `translate(${MARGIN.LEFT},${MARGIN.TOP})`)
     .attr('class', 'snake');
 
 export function  renderBackground(rowCount: number, columnCount: number): void {
-  const update: Selection<BaseType, number, BaseType, {}> = backgroundEl
+  const update: any = backgroundEl
     .selectAll('rect')
     .data<number>(d3.range(rowCount * columnCount));
 
@@ -44,9 +44,25 @@ export function  renderBackground(rowCount: number, columnCount: number): void {
       })
       .attr('width', CELL_SIZE)
       .attr('height', CELL_SIZE)
-      .attr('class', 'cell');
+      .attr('class', 'background-cell');
 }
 
 export function renderSnake(snake: IPoint2D[]): void {
-  console.log(snake);
+    const update: any = snakeEl
+      .selectAll('rect')
+      .data(snake);
+
+    update
+      .enter()
+      .append('rect')
+        .attr('x', (point: IPoint2D) => {
+          return toPosition(point.x);
+        })
+        .attr('y', (point: IPoint2D) => {
+          return toPosition(point.y);
+        })
+        .attr('width', CELL_SIZE)
+        .attr('height', CELL_SIZE)
+        .attr('class', 'snake-cell');
+
 }

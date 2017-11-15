@@ -3,16 +3,8 @@
  */
 import { Observable } from 'Libraries/rxjs';
 import { keyCodes } from 'Root/constants';
+import { IDirections, IPoint2D } from 'Root/types';
 import { isOpposite } from 'Root/utils';
-
-export interface IPoint2D {
-  x: number;
-  y: number;
-}
-
-interface IDirections {
-  [key: number]: IPoint2D;
-}
 
 const directions: IDirections = {
   [keyCodes.arrowUp]: { x: 0, y: -1 },
@@ -23,7 +15,8 @@ const directions: IDirections = {
 
 const initialDirection: IPoint2D = directions[keyCodes.arrowRight];
 
-const keydown$: Observable<KeyboardEvent> = Observable.fromEvent(document, 'keydown');
+const keydown$: Observable<KeyboardEvent> = Observable
+  .fromEvent(document, 'keydown');
 
 export const direction$: Observable<IPoint2D> = keydown$
   .map((event: KeyboardEvent) => directions[event.keyCode])

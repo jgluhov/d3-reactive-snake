@@ -7,16 +7,15 @@ import {
   ROW_COUNT
 } from 'Root/settings';
 import { snake$ } from 'Root/snake';
-import { IPoint2D } from 'Root/steering';
 import 'Root/styles';
 import {
   renderBackground,
   renderSnake
 } from 'Root/svg';
-
-interface IScene {
-  snake: IPoint2D[];
-}
+import {
+  IPoint2D,
+  IScene
+} from 'Root/types';
 
 renderBackground(ROW_COUNT, COLUMN_COUNT);
 
