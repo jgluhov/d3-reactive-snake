@@ -1,5 +1,10 @@
 {
-  "extends": [
-    "tslint-config-airbnb"
-  ]
+  "extends": "tslint-microsoft-contrib",
+  "rules": {
+    "export-name": false,
+    "no-console": false,
+    "no-import-side-effect": false,
+    "prefer-array-literal": false,
+    "no-any": false
+  }
 }

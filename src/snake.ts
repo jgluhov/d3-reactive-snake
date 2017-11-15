@@ -1,26 +1,38 @@
+/**
+ * Snake utils
+ */
 import {
-  Observable,
   BehaviorSubject,
-} from './lib/rxjs';
+  Observable
+} from 'Libraries/rxjs';
 import {
   SNAKE_INITIAL_LENGTH,
-  SNAKE_SPEED,
-} from './settings';
-import { direction$, Point2D } from './steering';
+  SNAKE_SPEED
+} from 'Root/settings';
+import {
+  direction$,
+  IPoint2D
+} from 'Root/steering';
 import {
   generateSnake,
-  moveSnake,
-} from './utils';
+  moveSnake
+} from 'Root/utils';
 
-const lengthHandler$ = new BehaviorSubject<number>(SNAKE_INITIAL_LENGTH);
+export interface ISnakeState {
+  snakeLength: number;
+  direction: IPoint2D;
+}
 
-const snakeSpeed$ = Observable.interval(SNAKE_SPEED);
+const lengthHandler$: BehaviorSubject<number> = new BehaviorSubject<number>(SNAKE_INITIAL_LENGTH);
+
+const snakeSpeed$: Observable<number> = Observable.interval(SNAKE_SPEED);
 
 const snakeLength$: Observable<number> = lengthHandler$
-  .scan((snakeLength, points) => snakeLength + points);
+  .scan((snakeLength: number, points: number) => snakeLength + points);
 
-export const snake$: Observable<Point2D[]> = snakeSpeed$
+export const snake$: Observable<IPoint2D[]> = snakeSpeed$
   .withLatestFrom(
-    snakeLength$, direction$, (_, snakeLength, direction) => [snakeLength, direction],
+    snakeLength$, direction$, (_: number, snakeLength: number, direction: IPoint2D) => ({snakeLength, direction})
   )
-  .scan(moveSnake, generateSnake());
+  .scan<ISnakeState, IPoint2D[]>(moveSnake, generateSnake())
+  .share();

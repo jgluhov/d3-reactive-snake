@@ -39,7 +39,11 @@ module.exports = {
     ],
 
     resolve: {
-        extensions: [' ', '.ts', '.js', '.styl']
+        extensions: [' ', '.ts', '.js', '.styl'],
+        alias: {
+            Root: path.resolve(__dirname, 'src/'),
+            Libraries: path.resolve(__dirname, 'src/lib/')
+        }
     },
 
     devtool: 'cheap-module-eval-source-map',

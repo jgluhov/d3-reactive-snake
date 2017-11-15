@@ -1,19 +1,20 @@
-import { Point2D } from './steering';
-import { SNAKE_INITIAL_LENGTH } from './settings';
+/**
+ * Snake utils
+ */
+import { SNAKE_INITIAL_LENGTH } from 'Root/settings';
+import { ISnakeState } from 'Root/snake';
+import { IPoint2D } from 'Root/steering';
 
-export function moveSnake(snake: Point2D[], [snakeLength, direction]): Point2D[] {
-  // console.log(snake, snakeLength, direction);
-
+export function moveSnake(snake: IPoint2D[], snakeState: ISnakeState): IPoint2D[] {
   return snake;
 }
 
-export function isOpposite(previous: Point2D, next: Point2D): boolean {
+export function isOpposite(previous: IPoint2D, next: IPoint2D): boolean {
   return next.x === previous.x * -1 || next.y === previous.y * -1;
 }
 
-export function generateSnake(): Point2D[] {
-  /* tslint:disable */
+export function generateSnake(): IPoint2D[] {
   return new Array(SNAKE_INITIAL_LENGTH)
     .fill(0)
-    .map((_, i: number) => ({ x: i, y: 0 }));
+    .map((_: number, i: number) => ({ x: i, y: 0 }));
 }

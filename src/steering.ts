@@ -1,31 +1,34 @@
-import { Observable } from './lib/rxjs';
-import { keyCodes } from './constants';
-import { isOpposite } from './utils';
+/**
+ * Snake Steering
+ */
+import { Observable } from 'Libraries/rxjs';
+import { keyCodes } from 'Root/constants';
+import { isOpposite } from 'Root/utils';
 
-export interface Point2D {
+export interface IPoint2D {
   x: number;
   y: number;
 }
 
-interface Directions {
-  [key: number]: Point2D;
+interface IDirections {
+  [key: number]: IPoint2D;
 }
 
-const directions: Directions = {
+const directions: IDirections = {
   [keyCodes.arrowUp]: { x: 0, y: -1 },
   [keyCodes.arrowRight]: { x: 1, y: 0 },
   [keyCodes.arrowDown]: { x: 0, y: 1 },
-  [keyCodes.arrowLeft]: { x: -1, y: 0 },
+  [keyCodes.arrowLeft]: { x: -1, y: 0 }
 };
 
-const initialDirection: Point2D = directions[keyCodes.arrowRight];
+const initialDirection: IPoint2D = directions[keyCodes.arrowRight];
 
-const keydown$ = Observable.fromEvent(document, 'keydown');
+const keydown$: Observable<KeyboardEvent> = Observable.fromEvent(document, 'keydown');
 
-export const direction$ = keydown$
+export const direction$: Observable<IPoint2D> = keydown$
   .map((event: KeyboardEvent) => directions[event.keyCode])
-  .filter((direction: Point2D) => !!direction)
-  .scan((previous: Point2D, next: Point2D) => {
+  .filter((direction: IPoint2D) => !!direction)
+  .scan((previous: IPoint2D, next: IPoint2D) => {
     return isOpposite(previous, next) ? previous : next;
   })
   .startWith(initialDirection)
