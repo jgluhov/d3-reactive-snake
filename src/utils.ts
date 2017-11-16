@@ -28,7 +28,7 @@ export function moveSnake(snake: IPoint2D[], snakeState: ISnakeState): IPoint2D[
 }
 
 export function adjustmentSnake(snake: IPoint2D): IPoint2D {
-  // console.log(snake);
+  console.log(snake);
 
   return snake;
 }
