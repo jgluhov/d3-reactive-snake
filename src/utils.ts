@@ -44,7 +44,7 @@ export function isOpposite(previous: IPoint2D, next: IPoint2D): boolean {
 export function generateSnake(): IPoint2D[] {
   return new Array(SNAKE_INITIAL_LENGTH)
     .fill(0)
-    .map((_: number, i: number) => ({ x: i, y: 0 }));
+    .map((_: number, i: number) => ({x: i, y: 0}));
 }
 
 export function toPosition(point: number): number {

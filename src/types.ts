@@ -2,7 +2,7 @@
  * Snake types
  */
 
-export { Selection, BaseType } from 'd3-selection';
+export {Selection, BaseType} from 'd3-selection';
 
 export interface IPoint2D {
   x: number;

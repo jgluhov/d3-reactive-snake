@@ -56,7 +56,7 @@ export function renderSnake(snake: IPoint2D[]): void {
     .enter()
     .append('rect')
     .merge(update)
-      .call(renderCell);
+    .call(renderCell);
 }
 
 function renderCell(rect: any): any {

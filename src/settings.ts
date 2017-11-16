@@ -1,7 +1,7 @@
 /**
  * Snake settings
  */
-import { IMargin } from 'Root/types';
+import {IMargin} from 'Root/types';
 
 export const MARGIN: IMargin = {
   TOP: 10,

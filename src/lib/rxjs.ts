@@ -1,9 +1,9 @@
 /**
  * RxJS library
  */
-export { Observable } from 'rxjs/Observable';
-export { BehaviorSubject } from 'rxjs/BehaviorSubject';
-export { animationFrame } from 'rxjs/scheduler/animationFrame';
+export {Observable} from 'rxjs/Observable';
+export {BehaviorSubject} from 'rxjs/BehaviorSubject';
+export {animationFrame} from 'rxjs/scheduler/animationFrame';
 
 /* tslint:disable */
 import 'rxjs/add/observable/fromEvent';
