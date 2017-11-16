@@ -3,7 +3,7 @@
  */
 
 import {BehaviorSubject, Observable} from 'Libraries/rxjs';
-import {SNAKE_INITIAL_LENGTH, SNAKE_SPEED} from 'Root/settings';
+import {EATEN_POINTS, SNAKE_INITIAL_LENGTH, SNAKE_SPEED} from 'Root/settings';
 import {direction$} from 'Root/steering';
 import {IPoint2D, ISnakeState} from 'Root/types';
 import {adjustPoint, generateSnake, moveSnake} from 'Root/utils';
@@ -13,7 +13,12 @@ const lengthHandler$: BehaviorSubject<number> = new BehaviorSubject<number>(SNAK
 const snakeSpeed$: Observable<number> = Observable.interval(SNAKE_SPEED);
 
 const snakeLength$: Observable<number> = lengthHandler$
-  .scan((snakeLength: number, points: number) => snakeLength + points);
+  .do((length: number) => {
+    console.log(length);
+  })
+  .scan((length: number, eaten: number) => {
+    return length + eaten;
+  });
 
 export const snake$: Observable<IPoint2D[]> = snakeSpeed$
   .withLatestFrom(
@@ -32,3 +37,8 @@ export const snake$: Observable<IPoint2D[]> = snakeSpeed$
   })
   .startWith(generateSnake())
   .share();
+
+Observable
+  .interval(1000)
+  .do(() => lengthHandler$.next(EATEN_POINTS))
+  .subscribe();

@@ -10,7 +10,7 @@ import {
   MARGIN,
   WIDTH
 } from 'Root/settings';
-import {BaseType, IPoint2D, Selection} from 'Root/types';
+import {IPoint2D} from 'Root/types';
 import {toPosition} from 'Root/utils';
 
 export const svg: any = d3.select('.container')
@@ -18,7 +18,7 @@ export const svg: any = d3.select('.container')
   .attr('width', WIDTH + MARGIN.LEFT + MARGIN.RIGHT)
   .attr('height', HEIGHT + MARGIN.TOP + MARGIN.BOTTOM);
 
-const backgroundEl: Selection<BaseType, {}, HTMLElement, any> = svg
+const backgroundEl: any = svg
   .append('g')
   .attr('transform', `translate(${MARGIN.LEFT},${MARGIN.TOP})`)
   .attr('class', 'background');
