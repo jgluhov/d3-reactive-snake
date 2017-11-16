@@ -18,6 +18,9 @@
       ],
       "Libraries/*": [
         "src/lib/*"
+      ],
+      "Settings": [
+        "src/settings"
       ]
     }
   },

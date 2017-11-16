@@ -20,13 +20,18 @@ export const svg: any = d3.select('.container')
 
 const backgroundEl: any = svg
   .append('g')
-  .attr('transform', `translate(${MARGIN.LEFT},${MARGIN.TOP})`)
-  .attr('class', 'background');
+    .attr('transform', `translate(${MARGIN.LEFT},${MARGIN.TOP})`)
+    .attr('class', 'background');
 
 const snakeEl: any = svg
   .append('g')
-  .attr('transform', `translate(${MARGIN.LEFT},${MARGIN.TOP})`)
-  .attr('class', 'snake');
+    .attr('transform', `translate(${MARGIN.LEFT},${MARGIN.TOP})`)
+    .attr('class', 'snake');
+
+const applesEl: any = svg
+  .append('g')
+    .attr('transform', `translate(${MARGIN.LEFT},${MARGIN.TOP})`)
+    .attr('class', 'apples');
 
 export function renderBackground(rowCount: number, columnCount: number): void {
   const update: any = backgroundEl
@@ -56,10 +61,22 @@ export function renderSnake(snake: IPoint2D[]): void {
     .enter()
     .append('rect')
     .merge(update)
-    .call(renderCell);
+    .call((rect: any) => renderRect(rect, 'snake-cell'));
 }
 
-function renderCell(rect: any): any {
+export function renderApples(apples: IPoint2D[]): void {
+  const update: any = applesEl
+    .selectAll('circle')
+    .data(apples);
+
+  update
+    .enter()
+    .append('circle')
+    .merge(update)
+    .call((circle: any) => renderCircle(circle, 'apple-cell'));
+}
+
+function renderRect(rect: any, className?: string): any {
   return rect
     .attr('x', (point: IPoint2D) => {
       return toPosition(point.x);
@@ -69,5 +86,17 @@ function renderCell(rect: any): any {
     })
     .attr('width', CELL_SIZE)
     .attr('height', CELL_SIZE)
-    .attr('class', 'snake-cell');
+    .classed(className, !!className);
+}
+
+function renderCircle(rect: any, className?: string): any {
+  return rect
+    .attr('cx', (point: IPoint2D) => {
+      return toPosition(point.x) + CELL_SIZE / 2;
+    })
+    .attr('cy', (point: IPoint2D) => {
+      return toPosition(point.y) + CELL_SIZE / 2;
+    })
+    .attr('r', CELL_SIZE / 2)
+    .classed(className, !!className);
 }

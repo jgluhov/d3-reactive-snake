@@ -34,8 +34,3 @@ export const snake$: Observable<IPoint2D[]> = snakeSpeed$
   })
   .startWith(generateSnake())
   .share();
-
-Observable
-  .interval(1000)
-  .do(() => lengthHandler$.next(EATEN_POINTS))
-  .subscribe();

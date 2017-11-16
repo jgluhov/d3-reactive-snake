@@ -18,8 +18,14 @@ export interface ISnakeState {
   direction: IPoint2D;
 }
 
+export interface IAppleState {
+  appleCount: number;
+  snake: IPoint2D[];
+}
+
 export interface IScene {
   snake: IPoint2D[];
+  apples: IPoint2D[];
 }
 
 export interface IMargin {

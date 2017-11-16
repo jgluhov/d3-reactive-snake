@@ -42,7 +42,8 @@ module.exports = {
     extensions: [' ', '.ts', '.js', '.styl'],
     alias: {
       Root: path.resolve(__dirname, 'src/'),
-      Libraries: path.resolve(__dirname, 'src/lib/')
+      Libraries: path.resolve(__dirname, 'src/lib/'),
+      Settings: path.resolve(__dirname, 'src/settings')
     }
   },
 

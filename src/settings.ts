@@ -22,3 +22,4 @@ export const SNAKE_INITIAL_LENGTH: number = 5;
 export const SNAKE_SPEED: number = 200;
 
 export const EATEN_POINTS: number = 1;
+export const APPLE_COUNT: number = 1;
