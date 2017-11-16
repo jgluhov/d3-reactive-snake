@@ -6,7 +6,7 @@ import { BehaviorSubject, Observable } from 'Libraries/rxjs';
 import { SNAKE_INITIAL_LENGTH, SNAKE_SPEED } from 'Root/settings';
 import { direction$ } from 'Root/steering';
 import { IPoint2D, ISnakeState } from 'Root/types';
-import {adjustmentSnake, generateSnake, moveSnake} from 'Root/utils';
+import {adjustPoint, generateSnake, moveSnake} from 'Root/utils';
 
 const lengthHandler$: BehaviorSubject<number> = new BehaviorSubject<number>(SNAKE_INITIAL_LENGTH);
 
@@ -27,7 +27,7 @@ export const snake$: Observable<IPoint2D[]> = snakeSpeed$
   .switchMap((snake: IPoint2D[]) => {
     return Observable
       .from(snake)
-      .map(adjustmentSnake)
+      .map(adjustPoint)
       .toArray();
   })
   .startWith(generateSnake())

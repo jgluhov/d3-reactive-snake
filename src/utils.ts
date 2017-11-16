@@ -3,7 +3,8 @@
  */
 import {
   CELL_SIZE,
-  GAP_SIZE,
+  COLUMN_COUNT,
+  GAP_SIZE, ROW_COUNT,
   SNAKE_INITIAL_LENGTH
 } from 'Root/settings';
 import {
@@ -27,10 +28,13 @@ export function moveSnake(snake: IPoint2D[], snakeState: ISnakeState): IPoint2D[
   return [...snake, next];
 }
 
-export function adjustmentSnake(snake: IPoint2D): IPoint2D {
-  console.log(snake);
+export function adjustPoint(point: IPoint2D): IPoint2D {
+  point.x = point.x >= COLUMN_COUNT ? 0 : point.x < 0 ? COLUMN_COUNT - 1 : point.x;
+  point.y = point.y >= ROW_COUNT ? 0 : point.y < 0 ? ROW_COUNT - 1 : point.y;
 
-  return snake;
+  console.log(point);
+
+  return point;
 }
 
 export function isOpposite(previous: IPoint2D, next: IPoint2D): boolean {
