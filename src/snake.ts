@@ -13,9 +13,6 @@ const lengthHandler$: BehaviorSubject<number> = new BehaviorSubject<number>(SNAK
 const snakeSpeed$: Observable<number> = Observable.interval(SNAKE_SPEED);
 
 const snakeLength$: Observable<number> = lengthHandler$
-  .do((length: number) => {
-    console.log(length);
-  })
   .scan((length: number, eaten: number) => {
     return length + eaten;
   });

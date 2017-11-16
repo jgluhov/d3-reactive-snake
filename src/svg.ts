@@ -31,7 +31,7 @@ const snakeEl: any = svg
 export function renderBackground(rowCount: number, columnCount: number): void {
   const update: any = backgroundEl
     .selectAll('rect')
-    .data<number>(d3.range(rowCount * columnCount));
+    .data(d3.range(rowCount * columnCount));
 
   update
     .enter()

@@ -26,11 +26,3 @@ const scene$: Observable<IScene> = Observable
 scene$.subscribe((scene: IScene) => {
   renderSnake(scene.snake);
 });
-
-// const game$: Observable<IScene> = Observable.interval(1000)
-//   .withLatestFrom(scene$, (_: number, scene: IScene) => scene)
-//   .take(1);
-//
-// game$.subscribe((scene: IScene) => {
-//   renderSnake(scene.snake);
-// });
