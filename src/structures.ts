@@ -1,7 +1,7 @@
 /**
  * Point2D class
  */
-import {IPoint2D} from 'Root/types';
+import {IPoint2D} from 'Types';
 
 export class Point2D implements IPoint2D {
   public x: number;

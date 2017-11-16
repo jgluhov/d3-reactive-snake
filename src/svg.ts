@@ -3,15 +3,9 @@
  */
 
 import * as d3 from 'Libraries/d3';
-import {
-  CELL_SIZE,
-  GAP_SIZE,
-  HEIGHT,
-  MARGIN,
-  WIDTH
-} from 'Root/settings';
-import {IPoint2D} from 'Root/types';
-import {toPosition} from 'Root/utils';
+import {CELL_SIZE, GAP_SIZE, HEIGHT, MARGIN, WIDTH} from 'Settings';
+import {IPoint2D} from 'Types';
+import {toPosition} from 'Utils';
 
 export const svg: any = d3.select('.container')
   .append('svg')

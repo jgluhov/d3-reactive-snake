@@ -1,22 +1,17 @@
 /**
  * Snake utils
  */
-import {
-  randomUniform
-} from 'Libraries/d3';
-import {
-  APPLE_COUNT,
-  CELL_SIZE,
-  COLUMN_COUNT,
-  GAP_SIZE, ROW_COUNT,
-  SNAKE_INITIAL_LENGTH
-} from 'Root/settings';
+import {randomUniform} from 'Libraries/d3';
+import {lengthHandler$} from 'Root/snake';
 import {Point2D} from 'Root/structures';
 import {
-  IAppleState,
-  IPoint2D,
-  ISnakeState
-} from 'Root/types';
+  CELL_SIZE,
+  COLUMN_COUNT,
+  EATEN_POINTS,
+  GAP_SIZE, ROW_COUNT,
+  SNAKE_INITIAL_LENGTH
+} from 'Settings';
+import {IAppleState, IPoint2D, ISnakeState} from 'Types';
 
 export function moveSnake(snake: IPoint2D[], snakeState: ISnakeState): IPoint2D[] {
   const head: IPoint2D = snake.slice().pop();
@@ -42,8 +37,13 @@ export function eatSnake(apples: IPoint2D[], appleState: IAppleState): IPoint2D[
   const { snake } = appleState;
 
   apples = apples.map((apple: IPoint2D): IPoint2D => {
-    return isCollided(snake, apple) ?
-      generatePoint2D() : apple;
+    if (isCollided(snake, apple)) {
+      lengthHandler$.next(EATEN_POINTS);
+
+      return generatePoint2D();
+    }
+
+    return apple;
   });
 
   return apples;

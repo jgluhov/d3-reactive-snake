@@ -2,7 +2,7 @@
  * Snake constants
  */
 
-import {IKeyCodes} from 'Root/types';
+import {IKeyCodes} from 'Types';
 
 export const keyCodes: IKeyCodes = {
   arrowUp: 38,

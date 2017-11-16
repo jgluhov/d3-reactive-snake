@@ -3,11 +3,9 @@
  */
 import {BehaviorSubject, Observable} from 'Libraries/rxjs';
 import {snake$} from 'Root/snake';
-import {IAppleState, IPoint2D} from 'Root/types';
-import {eatSnake, generateApples} from 'Root/utils';
-import {
-  APPLE_COUNT
-} from 'Settings';
+import {APPLE_COUNT} from 'Settings';
+import {IAppleState, IPoint2D} from 'Types';
+import {eatSnake, generateApples} from 'Utils';
 
 const applesHandler$: BehaviorSubject<number> = new BehaviorSubject(APPLE_COUNT);
 

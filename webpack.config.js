@@ -43,7 +43,10 @@ module.exports = {
     alias: {
       Root: path.resolve(__dirname, 'src/'),
       Libraries: path.resolve(__dirname, 'src/lib/'),
-      Settings: path.resolve(__dirname, 'src/settings')
+      Settings: path.resolve(__dirname, 'src/settings'),
+      Utils: path.resolve(__dirname, 'src/utils'),
+      Types: path.resolve(__dirname, 'src/types'),
+      Constants: path.resolve(__dirname, 'src/constants')
     }
   },
 

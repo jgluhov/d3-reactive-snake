@@ -1,14 +1,13 @@
 /**
  * Snake utils
  */
-
 import {BehaviorSubject, Observable} from 'Libraries/rxjs';
-import {EATEN_POINTS, SNAKE_INITIAL_LENGTH, SNAKE_SPEED} from 'Root/settings';
-import {direction$} from 'Root/steering';
-import {IPoint2D, ISnakeState} from 'Root/types';
-import {adjustPoint, generateSnake, moveSnake} from 'Root/utils';
+import {direction$} from 'Root/direction';
+import {SNAKE_INITIAL_LENGTH, SNAKE_SPEED} from 'Settings';
+import {IPoint2D, ISnakeState} from 'Types';
+import {adjustPoint, generateSnake, moveSnake} from 'Utils';
 
-const lengthHandler$: BehaviorSubject<number> = new BehaviorSubject<number>(SNAKE_INITIAL_LENGTH);
+export const lengthHandler$: BehaviorSubject<number> = new BehaviorSubject<number>(SNAKE_INITIAL_LENGTH);
 
 const snakeSpeed$: Observable<number> = Observable.interval(SNAKE_SPEED);
 

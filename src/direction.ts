@@ -1,10 +1,10 @@
 /**
  * Snake Steering
  */
+import {keyCodes} from 'Constants';
 import {Observable} from 'Libraries/rxjs';
-import {keyCodes} from 'Root/constants';
-import {IDirections, IPoint2D} from 'Root/types';
-import {isOpposite} from 'Root/utils';
+import {IDirections, IPoint2D} from 'Types';
+import {isOpposite} from 'Utils';
 
 const directions: IDirections = {
   [keyCodes.arrowUp]: {x: 0, y: -1},

@@ -21,6 +21,15 @@
       ],
       "Settings": [
         "src/settings"
+      ],
+      "Utils": [
+        "src/utils"
+      ],
+      "Types": [
+        "src/types"
+      ],
+      "Constants": [
+        "src/constants"
       ]
     }
   },

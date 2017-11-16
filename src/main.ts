@@ -1,23 +1,13 @@
 /**
  * Snake main
  */
-import {animationFrame, Observable} from 'Libraries/rxjs';
+import {Observable} from 'Libraries/rxjs';
 import {apples$} from 'Root/apples';
-import {
-  COLUMN_COUNT,
-  ROW_COUNT
-} from 'Root/settings';
 import {snake$} from 'Root/snake';
 import 'Root/styles';
-import {
-  renderApples,
-  renderBackground,
-  renderSnake
-} from 'Root/svg';
-import {
-  IPoint2D,
-  IScene
-} from 'Root/types';
+import {renderApples, renderBackground, renderSnake} from 'Root/svg';
+import {COLUMN_COUNT, ROW_COUNT} from 'Settings';
+import {IPoint2D, IScene} from 'Types';
 
 renderBackground(ROW_COUNT, COLUMN_COUNT);
 
