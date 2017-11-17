@@ -26,6 +26,7 @@ export interface IAppleState {
 export interface IScene {
   snake: IPoint2D[];
   apples: IPoint2D[];
+  score: number;
 }
 
 export interface IMargin {

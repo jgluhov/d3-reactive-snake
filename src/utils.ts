@@ -2,6 +2,7 @@
  * Snake utils
  */
 import {randomUniform} from 'Libraries/d3';
+import {scoreHandler$} from 'Root/score';
 import {lengthHandler$} from 'Root/snake';
 import {Point2D} from 'Root/structures';
 import {
@@ -40,6 +41,7 @@ export function eatSnake(apples: IPoint2D[], appleState: IAppleState): IPoint2D[
   apples = apples.map((apple: IPoint2D): IPoint2D => {
     if (isCollided(snakeHead, apple)) {
       lengthHandler$.next(EATEN_POINTS);
+      scoreHandler$.next(EATEN_POINTS);
 
       return generatePoint2D();
     }
@@ -87,6 +89,6 @@ export function generatePoint2D(): IPoint2D {
   );
 }
 
-export function isCollided(pointA: IPoint2D[], pointB: IPoint2D): boolean {
+export function isCollided(pointA: IPoint2D, pointB: IPoint2D): boolean {
   return pointA.x === pointB.x && pointA.y === pointB.y;
 }
