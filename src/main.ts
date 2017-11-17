@@ -3,10 +3,12 @@
  */
 import {Observable} from 'Libraries/rxjs';
 import {apples$} from 'Root/apples';
+import {renderApples, renderBackground, renderSnake} from 'Root/game-svg';
 import {score$} from 'Root/score';
+import {renderScore} from 'Root/score-svg';
+import 'Root/score-svg';
 import {snake$} from 'Root/snake';
 import 'Root/styles';
-import {renderApples, renderBackground, renderSnake} from 'Root/svg';
 import {COLUMN_COUNT, ROW_COUNT} from 'Settings';
 import {IPoint2D, IScene} from 'Types';
 
@@ -22,5 +24,5 @@ const scene$: Observable<IScene> = Observable
 scene$.subscribe((scene: IScene) => {
   renderSnake(scene.snake);
   renderApples(scene.apples);
-  console.log(scene.score);
+  renderScore(scene.score);
 });

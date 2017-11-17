@@ -18,6 +18,11 @@ export interface ISnakeState {
   direction: IPoint2D;
 }
 
+export interface IGradientAttr {
+  offset: string;
+  color: string;
+}
+
 export interface IAppleState {
   appleCount: number;
   snake: IPoint2D[];
@@ -26,6 +31,10 @@ export interface IAppleState {
 export interface IScene {
   snake: IPoint2D[];
   apples: IPoint2D[];
+  score: number;
+}
+
+export interface IScore {
   score: number;
 }
 

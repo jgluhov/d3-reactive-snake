@@ -12,12 +12,17 @@ body
   background-color rgba(0, 166, 242, 0.13)
   margin 0
 
-.container
+.game-container
   height 100%
   width 100%
   display flex
   align-items center
   justify-content center
+
+.score-container
+  position fixed
+  right 2em
+  top 2em
 
 .background-cell
   stroke rgba(3, 169, 244, 0.42)
@@ -34,3 +39,7 @@ body
 .apple-cell
   stroke apple-stroke-color
   fill apple-bg-color
+
+.score-text
+  font-family: 'Operator Mono', Consolas, sans-serif;
+  font-size: 30px;

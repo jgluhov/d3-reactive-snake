@@ -6,6 +6,7 @@
     "no-import-side-effect": false,
     "prefer-array-literal": false,
     "no-any": false,
-    "no-trailing-whitespace": false
+    "no-trailing-whitespace": false,
+    "no-invalid-this": false
   }
 }

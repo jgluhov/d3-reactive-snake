@@ -3,14 +3,14 @@
  */
 
 import * as d3 from 'Libraries/d3';
-import {CELL_SIZE, GAP_SIZE, HEIGHT, MARGIN, WIDTH} from 'Settings';
+import {CELL_SIZE, GAME_HEIGHT, GAME_WIDTH, GAP_SIZE, MARGIN} from 'Settings';
 import {IPoint2D} from 'Types';
 import {toPosition} from 'Utils';
 
-export const svg: any = d3.select('.container')
+export const svg: any = d3.select('.game-container')
   .append('svg')
-  .attr('width', WIDTH + MARGIN.LEFT + MARGIN.RIGHT)
-  .attr('height', HEIGHT + MARGIN.TOP + MARGIN.BOTTOM);
+  .attr('width', GAME_WIDTH + MARGIN.LEFT + MARGIN.RIGHT)
+  .attr('height', GAME_HEIGHT + MARGIN.TOP + MARGIN.BOTTOM);
 
 const backgroundEl: any = svg
   .append('g')
