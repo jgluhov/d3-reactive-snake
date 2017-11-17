@@ -33,7 +33,7 @@ defs
       .attr('offset', (d: IGradientAttr) => d.offset)
       .attr('stop-color', (d: IGradientAttr) => d.color);
 
-svg
+const circleEl: any = svg
   .append('circle')
   .attr('cx', SCORE_WIDTH / 2)
   .attr('cy', SCORE_HEIGHT / 2)
@@ -55,4 +55,15 @@ export function renderScore(score: number): void {
         .attr('y', SCORE_HEIGHT / 2)
     .merge(update)
     .text((d: IScore) => d.score);
+}
+
+export function renderBeating(): void {
+  circleEl
+    .transition()
+      .duration(150)
+      .attr('r', SCORE_WIDTH / 2 - 20)
+    .transition()
+      .duration(500)
+      .ease(d3.easeElasticOut)
+      .attr('r', SCORE_WIDTH / 2);
 }

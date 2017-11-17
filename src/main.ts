@@ -5,7 +5,7 @@ import {Observable} from 'Libraries/rxjs';
 import {apples$} from 'Root/apples';
 import {renderApples, renderBackground, renderSnake} from 'Root/game-svg';
 import {score$} from 'Root/score';
-import {renderScore} from 'Root/score-svg';
+import {renderBeating, renderScore} from 'Root/score-svg';
 import 'Root/score-svg';
 import {snake$} from 'Root/snake';
 import 'Root/styles';
@@ -25,4 +25,8 @@ scene$.subscribe((scene: IScene) => {
   renderSnake(scene.snake);
   renderApples(scene.apples);
   renderScore(scene.score);
+});
+
+score$.subscribe(() => {
+  renderBeating();
 });
