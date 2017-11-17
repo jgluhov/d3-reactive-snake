@@ -35,9 +35,10 @@ export function moveSnake(snake: IPoint2D[], snakeState: ISnakeState): IPoint2D[
 
 export function eatSnake(apples: IPoint2D[], appleState: IAppleState): IPoint2D[] {
   const { snake } = appleState;
+  const snakeHead: IPoint2D = snake.slice().pop();
 
   apples = apples.map((apple: IPoint2D): IPoint2D => {
-    if (isCollided(snake, apple)) {
+    if (isCollided(snakeHead, apple)) {
       lengthHandler$.next(EATEN_POINTS);
 
       return generatePoint2D();
@@ -86,8 +87,6 @@ export function generatePoint2D(): IPoint2D {
   );
 }
 
-export function isCollided(snake: IPoint2D[], point: IPoint2D): boolean {
-  const head: IPoint2D = snake.slice().pop();
-
-  return head.x === point.x && head.y === point.y;
+export function isCollided(pointA: IPoint2D[], pointB: IPoint2D): boolean {
+  return pointA.x === pointB.x && pointA.y === pointB.y;
 }
