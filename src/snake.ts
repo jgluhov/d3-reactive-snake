@@ -1,6 +1,7 @@
 /**
  * Snake utils
  */
+import {pauseHandler$} from 'IO/pause';
 import {BehaviorSubject, Observable} from 'Libraries/rxjs';
 import {direction$} from 'Root/io/direction';
 import {SNAKE_INITIAL_LENGTH, SNAKE_SPEED} from 'Settings';
@@ -9,14 +10,18 @@ import {adjustPoint, generateSnake, moveSnake} from 'Utils';
 
 export const lengthHandler$: BehaviorSubject<number> = new BehaviorSubject<number>(SNAKE_INITIAL_LENGTH);
 
-const snakeSpeed$: Observable<number> = Observable.interval(SNAKE_SPEED);
+const snakeSpeed$: Observable<number> = Observable
+  .interval(SNAKE_SPEED);
 
 const snakeLength$: Observable<number> = lengthHandler$
   .scan((length: number, eaten: number) => {
     return length + eaten;
   });
 
-export const snake$: Observable<IPoint2D[]> = snakeSpeed$
+export const snake$: Observable<IPoint2D[]> = pauseHandler$
+  .switchMap((isPaused: boolean) => {
+    return isPaused ? Observable.never() : snakeSpeed$;
+  })
   .withLatestFrom(
     snakeLength$, direction$, (
       _: number,

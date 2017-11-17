@@ -1,7 +1,6 @@
 /**
  * Snake main
  */
-import {pause$} from 'IO/pause';
 import {Observable} from 'Libraries/rxjs';
 import {apples$} from 'Root/apples';
 import {renderApples, renderBackground, renderSnake} from 'Root/game-svg';
@@ -30,8 +29,4 @@ scene$.subscribe((scene: IScene) => {
 
 score$.subscribe(() => {
   renderBeating();
-});
-
-pause$.subscribe((isPaused: boolean) => {
-  console.log(isPaused);
 });

@@ -10,6 +10,7 @@ import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/observable/from';
+import 'rxjs/add/observable/never';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
