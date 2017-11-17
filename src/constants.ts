@@ -10,3 +10,5 @@ export const keyCodes: IKeyCodes = {
   arrowDown: 40,
   arrowLeft: 37
 };
+
+export const escKeyCode: number = 27;

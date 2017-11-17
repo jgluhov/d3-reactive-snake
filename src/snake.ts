@@ -2,7 +2,7 @@
  * Snake utils
  */
 import {BehaviorSubject, Observable} from 'Libraries/rxjs';
-import {direction$} from 'Root/direction';
+import {direction$} from 'Root/io/direction';
 import {SNAKE_INITIAL_LENGTH, SNAKE_SPEED} from 'Settings';
 import {IPoint2D, ISnakeState} from 'Types';
 import {adjustPoint, generateSnake, moveSnake} from 'Utils';

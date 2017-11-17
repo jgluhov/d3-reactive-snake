@@ -46,7 +46,8 @@ module.exports = {
       Settings: path.resolve(__dirname, 'src/settings'),
       Utils: path.resolve(__dirname, 'src/utils'),
       Types: path.resolve(__dirname, 'src/types'),
-      Constants: path.resolve(__dirname, 'src/constants')
+      Constants: path.resolve(__dirname, 'src/constants'),
+      IO: path.resolve(__dirname, 'src/io')
     }
   },
 
