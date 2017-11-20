@@ -3,7 +3,7 @@
  */
 import {animationFrame, Observable} from 'Libraries/rxjs';
 import {apples$} from 'Root/apples';
-import {renderBackground, renderGameOver, renderScene} from 'Root/game-svg';
+import {renderBackground, renderScene} from 'Root/game-svg';
 import {score$} from 'Root/score';
 import {renderScore} from 'Root/score-svg';
 import 'Root/score-svg';
@@ -28,7 +28,7 @@ const game$: Observable<IScene> = Observable
 
 game$.subscribe({
   next: renderScene,
-  complete: renderGameOver
+  complete: () => {}
 });
 
 score$.subscribe(renderScore);
