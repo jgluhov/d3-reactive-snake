@@ -4,7 +4,7 @@
 
 import * as d3 from 'Libraries/d3';
 import {CELL_SIZE, GAME_HEIGHT, GAME_WIDTH, GAP_SIZE, MARGIN} from 'Settings';
-import {IPoint2D} from 'Types';
+import {IPoint2D, IScene} from 'Types';
 import {toPosition} from 'Utils';
 
 export const svg: any = d3.select('.game-container')
@@ -70,7 +70,7 @@ export function renderApples(apples: IPoint2D[]): void {
     .call((circle: any) => renderCircle(circle, 'apple-cell'));
 }
 
-function renderRect(rect: any, className?: string): any {
+function renderRect(rect: any, className?: string): void {
   return rect
     .attr('x', (point: IPoint2D) => {
       return toPosition(point.x);
@@ -83,7 +83,7 @@ function renderRect(rect: any, className?: string): any {
     .classed(className, !!className);
 }
 
-function renderCircle(rect: any, className?: string): any {
+function renderCircle(rect: any, className?: string): void {
   return rect
     .attr('cx', (point: IPoint2D) => {
       return toPosition(point.x) + CELL_SIZE / 2;
@@ -93,4 +93,13 @@ function renderCircle(rect: any, className?: string): any {
     })
     .attr('r', CELL_SIZE / 2)
     .classed(className, !!className);
+}
+
+// export function renderGameOver(): void {
+//
+// }
+
+export function renderScene(scene: IScene): void {
+  renderSnake(scene.snake);
+  renderApples(scene.apples);
 }

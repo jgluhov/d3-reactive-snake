@@ -45,25 +45,29 @@ export function renderScore(score: number): void {
     .selectAll('text')
     .data([{score}]);
 
-  update
+  const enter: any = update
     .enter()
       .append('text')
         .attr('class', 'score-text')
         .attr('text-anchor', 'middle')
         .attr('alignment-baseline', 'middle')
         .attr('x', SCORE_WIDTH / 2)
-        .attr('y', SCORE_HEIGHT / 2)
+        .attr('y', SCORE_HEIGHT / 2);
+
+  renderBeating();
+
+  enter
     .merge(update)
     .text((d: IScore) => d.score);
 }
 
-export function renderBeating(): void {
+function renderBeating(): void {
   circleEl
     .transition()
-      .duration(150)
-      .attr('r', SCORE_WIDTH / 2 - 20)
+    .duration(150)
+    .attr('r', SCORE_WIDTH / 2 - 20)
     .transition()
-      .duration(500)
-      .ease(d3.easeElasticOut)
-      .attr('r', SCORE_WIDTH / 2);
+    .duration(500)
+    .ease(d3.easeElasticOut)
+    .attr('r', SCORE_WIDTH / 2);
 }

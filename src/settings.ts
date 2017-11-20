@@ -26,3 +26,5 @@ export const APPLE_COUNT: number = 1;
 
 export const SCORE_WIDTH: number = 120 - MARGIN.LEFT - MARGIN.RIGHT;
 export const SCORE_HEIGHT: number = 120 - MARGIN.TOP - MARGIN.BOTTOM;
+
+export const FPS: number = 60;

@@ -21,6 +21,7 @@ import 'rxjs/add/operator/share';
 import 'rxjs/add/operator/withLatestFrom';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/toArray';
+import 'rxjs/add/operator/takeWhile';
 
 // TODO: remove, only for dev
 import 'rxjs/add/operator/take';

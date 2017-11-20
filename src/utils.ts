@@ -92,3 +92,12 @@ export function generatePoint2D(): IPoint2D {
 export function isCollided(pointA: IPoint2D, pointB: IPoint2D): boolean {
   return pointA.x === pointB.x && pointA.y === pointB.y;
 }
+
+export function isGameOver(snake: IPoint2D[]): boolean {
+  const sliced: IPoint2D[] = snake.slice();
+  const head: IPoint2D = sliced.pop();
+
+  return sliced.some(
+    (point: IPoint2D) => isCollided(point, head)
+  );
+}

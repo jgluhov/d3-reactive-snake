@@ -1,32 +1,34 @@
 /**
  * Snake main
  */
-import {Observable} from 'Libraries/rxjs';
+import {animationFrame, Observable} from 'Libraries/rxjs';
 import {apples$} from 'Root/apples';
-import {renderApples, renderBackground, renderSnake} from 'Root/game-svg';
+import {renderBackground, renderGameOver, renderScene} from 'Root/game-svg';
 import {score$} from 'Root/score';
-import {renderBeating, renderScore} from 'Root/score-svg';
+import {renderScore} from 'Root/score-svg';
 import 'Root/score-svg';
 import {snake$} from 'Root/snake';
 import 'Root/styles';
-import {COLUMN_COUNT, ROW_COUNT} from 'Settings';
+import {COLUMN_COUNT, FPS, ROW_COUNT} from 'Settings';
 import {IPoint2D, IScene} from 'Types';
+import {isGameOver} from 'Utils';
 
 renderBackground(ROW_COUNT, COLUMN_COUNT);
 
 const scene$: Observable<IScene> = Observable
-  .combineLatest(snake$, apples$, score$, (
+  .combineLatest(snake$, apples$, (
     snake: IPoint2D[],
-    apples: IPoint2D[],
-    score: number
-  ) => ({snake, apples, score}));
+    apples: IPoint2D[]
+  ) => ({snake, apples}));
 
-scene$.subscribe((scene: IScene) => {
-  renderSnake(scene.snake);
-  renderApples(scene.apples);
-  renderScore(scene.score);
+const game$: Observable<IScene> = Observable
+  .interval(1000 / FPS, animationFrame)
+  .withLatestFrom(scene$, (_: number, scene: IScene) => scene)
+  .takeWhile((scene: IScene) => !isGameOver(scene.snake));
+
+game$.subscribe({
+  next: renderScene,
+  complete: renderGameOver
 });
 
-score$.subscribe(() => {
-  renderBeating();
-});
+score$.subscribe(renderScore);
