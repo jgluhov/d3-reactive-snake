@@ -4,7 +4,7 @@
 
 import * as d3 from 'Libraries/d3';
 import {CELL_SIZE, GAME_HEIGHT, GAME_WIDTH, GAP_SIZE, MARGIN} from 'Settings';
-import {IPoint2D, IScene} from 'Types';
+import {IGroupAttr, IPoint2D, IScene} from 'Types';
 import {toPosition} from 'Utils';
 
 export const svg: any = d3.select('.game-container')
@@ -12,23 +12,21 @@ export const svg: any = d3.select('.game-container')
   .attr('width', GAME_WIDTH + MARGIN.LEFT + MARGIN.RIGHT)
   .attr('height', GAME_HEIGHT + MARGIN.TOP + MARGIN.BOTTOM);
 
-const backgroundEl: any = svg
+svg
+  .selectAll('g')
+  .data([
+    {className: 'background'},
+    {className: 'snake'},
+    {className: 'apples'}
+  ])
+  .enter()
   .append('g')
     .attr('transform', `translate(${MARGIN.LEFT},${MARGIN.TOP})`)
-    .attr('class', 'background');
-
-const snakeEl: any = svg
-  .append('g')
-    .attr('transform', `translate(${MARGIN.LEFT},${MARGIN.TOP})`)
-    .attr('class', 'snake');
-
-const applesEl: any = svg
-  .append('g')
-    .attr('transform', `translate(${MARGIN.LEFT},${MARGIN.TOP})`)
-    .attr('class', 'apples');
+    .attr('class', (d: IGroupAttr) => d.className);
 
 export function renderBackground(rowCount: number, columnCount: number): void {
-  const update: any = backgroundEl
+  const update: any = svg
+    .select('.background')
     .selectAll('rect')
     .data(d3.range(rowCount * columnCount));
 
@@ -47,7 +45,8 @@ export function renderBackground(rowCount: number, columnCount: number): void {
 }
 
 export function renderSnake(snake: IPoint2D[]): void {
-  const update: any = snakeEl
+  const update: any = svg
+    .select('.snake')
     .selectAll('rect')
     .data(snake);
 
@@ -59,7 +58,8 @@ export function renderSnake(snake: IPoint2D[]): void {
 }
 
 export function renderApples(apples: IPoint2D[]): void {
-  const update: any = applesEl
+  const update: any = svg
+    .select('.apples')
     .selectAll('circle')
     .data(apples);
 
@@ -95,9 +95,9 @@ function renderCircle(rect: any, className?: string): void {
     .classed(className, !!className);
 }
 
-// export function renderGameOver(): void {
-//
-// }
+export function renderGameOver(): void {
+
+}
 
 export function renderScene(scene: IScene): void {
   renderSnake(scene.snake);

@@ -47,3 +47,7 @@ export interface IMargin {
 export interface IKeyCodes {
   [key: string]: number;
 }
+
+export interface IGroupAttr {
+  className: string;
+}
