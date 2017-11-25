@@ -24,21 +24,24 @@ body
   right 2em
   top 2em
 
-.background-cell
-  stroke rgba(3, 169, 244, 0.42)
-  stroke-width 1px
-  fill #00a6f1
+.background
+  > rect
+    stroke rgba(3, 169, 244, 0.42)
+    stroke-width 1px
+    fill #00a6f1
 
-.snake-cell
-  stroke rgba(3, 169, 244, 0.42)
-  &:not(:last-child)
-    fill snake-body-color
-  &:last-child
-    fill snake-head-color
+.snake
+  > rect
+    stroke rgba(3, 169, 244, 0.42)
+    &:not(:last-child)
+      fill snake-body-color
+    &:last-child
+      fill snake-head-color
 
-.apple-cell
-  stroke apple-stroke-color
-  fill apple-bg-color
+.apples
+  > circle
+    stroke apple-stroke-color
+    fill apple-bg-color
 
 .score-text
   font-family: 'Operator Mono', Consolas, sans-serif;

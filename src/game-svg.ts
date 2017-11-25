@@ -40,8 +40,7 @@ export function renderBackground(rowCount: number, columnCount: number): void {
       return Math.floor(i / columnCount) * (CELL_SIZE + GAP_SIZE);
     })
     .attr('width', CELL_SIZE)
-    .attr('height', CELL_SIZE)
-    .attr('class', 'background-cell');
+    .attr('height', CELL_SIZE);
 }
 
 export function renderSnake(snake: IPoint2D[]): void {
@@ -54,7 +53,7 @@ export function renderSnake(snake: IPoint2D[]): void {
     .enter()
     .append('rect')
     .merge(update)
-    .call((rect: any) => renderRect(rect, 'snake-cell'));
+    .call(renderRect);
 }
 
 export function renderApples(apples: IPoint2D[]): void {
@@ -67,7 +66,7 @@ export function renderApples(apples: IPoint2D[]): void {
     .enter()
     .append('circle')
     .merge(update)
-    .call((circle: any) => renderCircle(circle, 'apple-cell'));
+    .call(renderCircle);
 }
 
 function renderRect(rect: any, className?: string): void {
@@ -83,7 +82,7 @@ function renderRect(rect: any, className?: string): void {
     .classed(className, !!className);
 }
 
-function renderCircle(rect: any, className?: string): void {
+function renderCircle(rect: any): void {
   return rect
     .attr('cx', (point: IPoint2D) => {
       return toPosition(point.x) + CELL_SIZE / 2;
@@ -91,8 +90,7 @@ function renderCircle(rect: any, className?: string): void {
     .attr('cy', (point: IPoint2D) => {
       return toPosition(point.y) + CELL_SIZE / 2;
     })
-    .attr('r', CELL_SIZE / 2)
-    .classed(className, !!className);
+    .attr('r', CELL_SIZE / 2);
 }
 
 export function renderGameOver(): void {
