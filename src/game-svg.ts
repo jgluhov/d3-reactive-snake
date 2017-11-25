@@ -93,10 +93,6 @@ function renderCircle(rect: any): void {
     .attr('r', CELL_SIZE / 2);
 }
 
-export function renderGameOver(): void {
-
-}
-
 export function renderScene(scene: IScene): void {
   renderSnake(scene.snake);
   renderApples(scene.apples);
