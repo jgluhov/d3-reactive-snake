@@ -19,7 +19,8 @@ export const GAME_WIDTH: number = COLUMN_COUNT * (CELL_SIZE + GAP_SIZE);
 export const GAME_HEIGHT: number = ROW_COUNT * (CELL_SIZE + GAP_SIZE);
 
 export const SNAKE_INITIAL_LENGTH: number = 5;
-export const SNAKE_SPEED: number = 200;
+export const SNAKE_DEFAULT_SPEED: number = 200;
+export const SNAKE_NITRO_SPEED: number = 50;
 
 export const EATEN_POINTS: number = 1;
 export const APPLE_COUNT: number = 1;

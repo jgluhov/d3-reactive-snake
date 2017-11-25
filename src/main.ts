@@ -1,6 +1,7 @@
 /**
  * Snake main
  */
+import 'IO/increasing';
 import {animationFrame, Observable} from 'Libraries/rxjs';
 import {apples$} from 'Root/apples';
 import {renderBackground, renderScene} from 'Root/game-svg';

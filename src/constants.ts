@@ -12,3 +12,7 @@ export const keyCodes: IKeyCodes = {
 };
 
 export const escKeyCode: number = 27;
+export const SPACE_KEY: number = 32;
+
+export const SIGNAL_START: number = 1;
+export const SIGNAL_END: number = 0;
