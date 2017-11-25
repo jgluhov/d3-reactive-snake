@@ -2,7 +2,6 @@
  * Snake Steering
  */
 import {keyCodes} from 'Constants';
-import {keydown$} from 'IO/keydown';
 import {Observable} from 'Libraries/rxjs';
 import {IDirections, IPoint2D} from 'Types';
 import {isOpposite} from 'Utils';
@@ -16,7 +15,8 @@ const directions: IDirections = {
 
 const initialDirection: IPoint2D = directions[keyCodes.arrowRight];
 
-export const direction$: Observable<IPoint2D> = keydown$
+export const direction$: Observable<IPoint2D> = Observable
+  .fromEvent(document, 'keydown')
   .map((event: KeyboardEvent) => directions[event.keyCode])
   .filter((direction: IPoint2D) => !!direction)
   .scan((previous: IPoint2D, next: IPoint2D) => {

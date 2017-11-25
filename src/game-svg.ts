@@ -9,8 +9,8 @@ import {toPosition} from 'Utils';
 
 export const svg: any = d3.select('.game-container')
   .append('svg')
-  .attr('width', GAME_WIDTH + MARGIN.LEFT + MARGIN.RIGHT)
-  .attr('height', GAME_HEIGHT + MARGIN.TOP + MARGIN.BOTTOM);
+    .attr('width', GAME_WIDTH + MARGIN.LEFT + MARGIN.RIGHT)
+    .attr('height', GAME_HEIGHT + MARGIN.TOP + MARGIN.BOTTOM);
 
 svg
   .selectAll('g')
