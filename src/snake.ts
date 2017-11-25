@@ -25,8 +25,8 @@ increaseEnds$
   .mapTo(SNAKE_DEFAULT_SPEED)
   .subscribe(speedHandler$);
 
-const snakeSpeed$: Observable<number> = speedHandler$
-  .withLatestFrom(pauseHandler$)
+const snakeSpeed$: Observable<number> = Observable
+  .combineLatest(speedHandler$, pauseHandler$)
   .switchMap(([snakeSpeed, isPaused]) => {
     return isPaused ?
       Observable.never() : Observable.interval(snakeSpeed);
