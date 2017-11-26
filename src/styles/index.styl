@@ -1,6 +1,11 @@
 snake-body-color = #f44336
 snake-head-color = #fffaf0
 
+keymap-bg-color = aliceblue
+keymap-height = 60px
+keymap-padding-left = 10px
+keymap-padding-right = 10px
+
 apple-stroke-color = rgba(3, 169, 244, 0.42);
 apple-bg-color = #3dfd40
 
@@ -9,15 +14,39 @@ html, body
   width 100%
 
 body
-  background-color rgba(0, 166, 242, 0.13)
   margin 0
-
-.game-container
-  height 100%
+  height "calc(100% - %s)" % keymap-height
   width 100%
   display flex
   align-items center
   justify-content center
+  background linear-gradient(90deg, #dee1e1 10%, #f4f4f4 90%)
+
+.keymap-container
+  padding 7px 10px
+  height keymap-height
+  width "calc(100% - %s - %s)" % (keymap-padding-left keymap-padding-right)
+  position fixed
+  bottom 0
+  z-index 1
+  border-top 1px solid #c3c5c5
+
+  ul
+    padding 0
+    margin 0
+    display flex
+    flex-direction column
+    height 100%
+    align-items flex-start
+    flex-wrap wrap
+    li
+      list-style-type none
+      &:nth-child(2n + 1)
+        margin-bottom 13px
+      button
+        font-size 15px
+      pre
+        display inline-block
 
 .score-container
   position fixed
