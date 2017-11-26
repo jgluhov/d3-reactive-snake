@@ -35,15 +35,19 @@ export function moveSnake(snake: IPoint2D[], snakeState: ISnakeState): IPoint2D[
 }
 
 export function eatSnake(apples: IPoint2D[], appleState: IAppleState): IPoint2D[] {
-  const { snake } = appleState;
+  const { appleCount, snake } = appleState;
   const snakeHead: IPoint2D = snake.slice().pop();
+
+  if (!apples.length) {
+    return generateApples(appleCount, snake);
+  }
 
   apples = apples.map((apple: IPoint2D): IPoint2D => {
     if (isCollided(snakeHead, apple)) {
       lengthHandler$.next(EATEN_POINTS);
       scoreHandler$.next(EATEN_POINTS);
 
-      return generatePoint2D();
+      return generatePoint2D(snake);
     }
 
     return apple;
@@ -76,17 +80,26 @@ export function toPosition(point: number): number {
   return point * (CELL_SIZE + GAP_SIZE);
 }
 
-export function generateApples(count: number): IPoint2D[] {
+export function generateApples(count: number, snake: IPoint2D[]): IPoint2D[] {
   return new Array(count)
     .fill(0)
-    .map(generatePoint2D);
+    .map(() => generatePoint2D(snake));
 }
 
-export function generatePoint2D(): IPoint2D {
-  return new Point2D(
+export function generatePoint2D(snake: IPoint2D[]): IPoint2D {
+  const point: IPoint2D = new Point2D(
     Math.floor(randomUniform(0, COLUMN_COUNT - 1)()),
     Math.floor(randomUniform(0, ROW_COUNT - 1)())
   );
+
+  const collision: boolean = snake
+    .some((segment: IPoint2D) => isCollided(segment, point));
+
+  if (collision) {
+    return generatePoint2D(snake);
+  }
+
+  return point;
 }
 
 export function isCollided(pointA: IPoint2D, pointB: IPoint2D): boolean {

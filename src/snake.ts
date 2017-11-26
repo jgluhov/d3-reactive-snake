@@ -3,7 +3,7 @@
  */
 import {increaseEnds$, increaseStarts$} from 'IO/increasing';
 import {pauseHandler$} from 'IO/pause';
-import {BehaviorSubject, Observable, Timestamp} from 'Libraries/rxjs';
+import {BehaviorSubject, Observable} from 'Libraries/rxjs';
 import {direction$} from 'Root/io/direction';
 import {SNAKE_DEFAULT_SPEED, SNAKE_INITIAL_LENGTH, SNAKE_NITRO_SPEED} from 'Settings';
 import {IPoint2D, ISnakeState} from 'Types';
