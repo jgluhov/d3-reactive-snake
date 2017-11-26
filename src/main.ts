@@ -12,9 +12,7 @@ import {snake$} from 'Root/snake';
 import 'Root/styles';
 import {COLUMN_COUNT, FPS, ROW_COUNT} from 'Settings';
 import {IPoint2D, IScene} from 'Types';
-import {isGameOver} from 'Utils';
-
-renderBackground(ROW_COUNT, COLUMN_COUNT);
+import {isGameOver, showKeymap} from 'Utils';
 
 const scene$: Observable<IScene> = Observable
   .combineLatest(snake$, apples$, (
@@ -27,5 +25,14 @@ const game$: Observable<IScene> = Observable
   .withLatestFrom(scene$, (_: number, scene: IScene) => scene)
   .takeWhile((scene: IScene) => !isGameOver(scene.snake));
 
-game$.subscribe(renderScene);
-score$.subscribe(renderScore);
+document.addEventListener(
+  'DOMContentLoaded',
+  () => {
+    showKeymap();
+    renderBackground(ROW_COUNT, COLUMN_COUNT);
+
+    game$.subscribe(renderScene);
+    score$.subscribe(renderScore);
+  },
+  true
+);

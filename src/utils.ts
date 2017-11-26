@@ -114,3 +114,9 @@ export function isGameOver(snake: IPoint2D[]): boolean {
     (point: IPoint2D) => isCollided(point, head)
   );
 }
+
+export function showKeymap(): void {
+  document
+    .querySelector('.keymap-container')
+    .removeAttribute('style');
+}
