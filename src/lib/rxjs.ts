@@ -27,7 +27,4 @@ import 'rxjs/add/operator/takeWhile';
 import 'rxjs/add/operator/mapTo';
 import 'rxjs/add/operator/timestamp';
 import 'rxjs/add/operator/first';
-
-// TODO: remove, only for dev
-import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/do';
